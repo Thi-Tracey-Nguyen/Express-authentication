@@ -1,7 +1,7 @@
 # express-authentication
 This is a project to create a basic authentication using passport, express-session, bcrypt and ejs. 
 
-##Express-session 
+## Express-session 
 
 Express-session is a HTTP server-side framework used to create and manage a session middleware. When the client makes a login request to the server, the server will create a session and store it on the server-side with a unique session ID. 
 
