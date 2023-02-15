@@ -11,6 +11,7 @@ import initializePassport from './passport-config.js'
 import flash from 'express-flash' // to print message in ejs
 import session from 'express-session'
 import dotenv from 'dotenv'
+import methodOverride from 'method-override'
 
 //config
 const app = express()
@@ -35,6 +36,7 @@ app.use(session({
 }))
 app.use(passport.initialize())
 app.use(passport.session())
+app.use(methodOverride('_method'))
 
 
 
@@ -85,6 +87,13 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
 //   }
 //   res.redirect('/login')
 // }
+
+app.delete('/logout', (req, res, next) => {
+  req.logOut(err => {
+    if (err) return next(err)
+    res.redirect('/login')
+  })
+})
 
 function checkNotAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
